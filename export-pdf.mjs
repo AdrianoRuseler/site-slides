@@ -28,8 +28,10 @@ for (const deck of decks) {
   const entry = join(DECKS_DIR, deck, 'slides.md')
   const output = resolve(OUT_DIR, `${deck}.pdf`) // absoluto por segurança
   console.log(`\n▶ ${deck} → pdf/${deck}.pdf`)
+  // domcontentloaded (em vez de networkidle) evita timeouts com dev server / HMR /
+  // componentes pesados. O --wait dá tempo do conteúdo e animações finalizarem.
   execSync(
-    `npx slidev export ${entry} --output ${output} --format pdf --timeout 60000 --wait-until networkidle`,
+    `npx slidev export ${entry} --output ${output} --format pdf --timeout 90000 --wait-until domcontentloaded --wait 1000`,
     { stdio: 'inherit' },
   )
 }
