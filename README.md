@@ -41,4 +41,24 @@ pnpm slidev decks/demo/slides.md --open   # edita um deck específico
 pnpm build        # gera dist/ com todos os decks + index.html
 ```
 
+## Export PDFs
+Pré-requisitos (uma vez só)
+
+O export usa Playwright/Chromium, então antes de rodar pela primeira vez, no seu ambiente local:
+
+```bash
+pnpm add -D playwright-chromium   # o pacote que o Slidev importa
+npx playwright install chromium   # baixa o binário do navegador
+```
+
+```bash
+pnpm run export
+```
+
+Repare que export depende do arquivo export-pdf.mjs estar na raiz do projeto (o mesmo que percorre decks/*/slides.md). Se você só quisesse exportar um deck específico sem o script, daria para chamar o Slidev direto:
+
+```bash
+pnpm slidev export decks/slide01/slides.md --output pdf/slide01.pdf --per-slide --wait-until domcontentloaded --wait 5000
+```
+
 Deploy automático via GitHub Actions a cada push na `main`.

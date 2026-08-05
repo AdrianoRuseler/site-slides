@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "slidev decks/slide01/slides.md --open",
     "build": "node build.mjs",
+    "export": "node export-pdf.mjs",
     "deploy:pages": "node build.mjs && touch dist/.nojekyll && gh-pages -d dist -t true"
   },
   "dependencies": {
