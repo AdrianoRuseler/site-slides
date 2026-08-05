@@ -103,7 +103,7 @@ layout: default
 
 Use os botões de navegação para avançar no código linha por linha:
 
-```ts {all|1-6|8-12|14-20|all}
+```ts {all|1-6|8-12|14-20|all} 
 // 1. Definição da Interface do Usuário
 interface User {
   id: number;
@@ -174,22 +174,42 @@ function isAccountValid(account: Account): boolean {
 layout: default
 ---
 
-# 📐 Arquitetura do Sistema (Diagrama)
-
+# 🔬 Key elements in Product X (Mermaid)
+📚🔬🔎🥼⚡📐⚙️
 Podemos desenhar fluxos diretamente usando Markdown com Mermaid:
 
 ```mermaid
-graph TD
-    A[Cliente / Frontend] -->|1. HTTP POST /login| B[API Gateway]
-    B -->|2. Valida Token| C[Serviço de Autenticação]
-    C -->|3. Consulta Usuário| D[(Banco de Dados PostgreSQL)]
-    D -->|4. Retorna Dados| C
-    C -->|5. Gera JWT| B
-    B -->|6. Resposta 200 OK + Token| A
+---
+config:
+  pie:
+    textPosition: 0.5
+    donutHole: 0.1
+    highlightSlice: Potassium
+  themeVariables:
+    pieOuterStrokeWidth: "5px"
+---
+pie showData
+    title Key elements in Product X 🏆
+    "Calcium" : 40
+    "Potassium" : 45
+    "Magnesium" : 10
+    "Iron" :  5
+```
 
-    style A fill:#1e293b,stroke:#38bdf8,stroke-width:2px
-    style C fill:#1e293b,stroke:#34d399,stroke-width:2px
-    style D fill:#1e293b,stroke:#f87171,stroke-width:2px
+---
+layout: default
+---
+
+# 📐 PlantUML Diagrams 
+
+You can create PlantUML diagrams easily in your slides, for example:
+
+## plantuml
+
+```plantuml
+@startuml
+Alice -> Bob : Hello!
+@enduml
 ```
 
 ---
@@ -312,4 +332,155 @@ Obrigado pela atenção!
 
 [Documentação do Slidev](https://sli.dev/) · [GitHub](https://github.com/slidevjs/slidev)
 
+---
+
+# Imagens no Slidev 🎨
+## Posicionamento, SVG Inline e Classes CSS/Tailwind
+
+<div class="pt-12">
+  <span class="px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300">
+    Pressione <kbd>espaço</kbd> para navegar
+  </span>
+</div>
+
+---
+
+# 1. Inclusão Básica de PNG & SVG
+
+O Slidev aceita sintaxe nativa do Markdown ou tags HTML `<img>` para melhor controle de dimensões.
+
+<div class="grid grid-cols-2 gap-6 mt-6">
+
+  <div class="p-4 bg-slate-800/60 rounded-lg border border-slate-700 text-center">
+    <h3 class="mb-3 font-semibold text-sky-400">Imagem PNG (via HTML)</h3>
+    <!-- Imagem local em ./public/logo.png ou URL remota -->
+    <img 
+      src="https://raw.githubusercontent.com/slidevjs/slidev/main/assets/logo.png" 
+      alt="Logo Slidev PNG" 
+      class="h-32 mx-auto filter drop-shadow-md" 
+    />
+    <p class="text-xs text-gray-400 mt-4">Uso de <code>class="h-32 mx-auto"</code> para altura e centralização</p>
+  </div>
+
+  <div class="p-4 bg-slate-800/60 rounded-lg border border-slate-700 text-center">
+    <h3 class="mb-3 font-semibold text-emerald-400">Vetor SVG (via Tag File)</h3>
+    <!-- Imagem SVG vinda de URL ou pasta local -->
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" 
+      alt="TypeScript SVG" 
+      class="h-32 mx-auto"
+    />
+    <p class="text-xs text-gray-400 mt-4">SVGs em tag <code>&lt;img&gt;</code> mantêm excelente nitidez em qualquer zoom</p>
+  </div>
+
+</div>
+
+---
+
+# 2. Posicionamento Absoluto (Pins & Badges)
+
+Você pode posicionar imagens/ícones em qualquer canto do slide usando utilitários nativos como `abs-tl`, `abs-tr`, `abs-bl`, `abs-br`.
+
+<!-- Logo no canto superior direito -->
+<div class="abs-tr m-6 flex items-center gap-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700">
+  <img src="https://raw.githubusercontent.com/slidevjs/slidev/main/assets/logo.png" class="h-5 w-5" />
+  <span class="text-xs font-mono">UTFPR / DAINF</span>
+</div>
+
+<!-- Imagem decorativa no canto inferior esquerdo -->
+<div class="abs-bl m-6 opacity-30 hover:opacity-100 transition">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" class="w-12 h-12" />
+</div>
+
+<div class="mt-8">
+  <p class="text-lg">Exemplo de conteúdo principal do slide.</p>
+  <p class="text-sm opacity-70">Observe a marca d'água/badge fixada no topo direito e no canto inferior esquerdo!</p>
+</div>
+
+```html
+<!-- Canto superior direito (Top-Right) -->
+<div class="abs-tr m-6">
+  <img src="/logo.png" class="h-8" />
+</div>
+
+<!-- Canto inferior direito (Bottom-Right) -->
+<div class="abs-br m-6">
+  <img src="/watermark.svg" class="h-10" />
+</div>
+
 ```
+
+---
+layout: two-cols
+layoutClass: gap-8 items-center
+--- 
+
+
+# 3. Alinhamento Lado a Lado (Grids)
+
+Posicionando imagens lado a lado com texto em colunas.
+
+* Usa o layout nativo `two-cols`
+* Centralização vertical com `items-center`
+* Ajuste de proporção com `object-cover` ou `object-contain`
+
+::right::
+
+# 4. SVG Inline (Estilização via CSS/Tailwind)
+
+Em vez de usar `<img>`, colar o SVG direto no Markdown permite alterar suas cores com Tailwind (`fill-current`, `text-*`):
+
+---
+
+# 5. Ícones Integrados (UnoCSS / Carbon Icons)
+
+No Slidev você também pode usar milhares de ícones vetoriais em SVG sem precisar baixar nenhum arquivo:
+
+---
+
+### 💡 Principais Dicas de Posicionamento no Slidev:
+
+1. **Pastas para Imagens Locais**:
+* Coloque suas imagens na pasta **`public/`** na raiz do projeto (ex: `public/imagens/microcontrolador.png`).
+* No slide, refira-se a elas iniciando pela barra raiz: `<img src="/imagens/microcontrolador.png" />`.
+
+
+2. **Classes Utilitárias de Posicionamento Absoluto**:
+* `abs-tl`: Canto Superior Esquerdo (Top-Left)
+* `abs-tr`: Canto Superior Direito (Top-Right)
+* `abs-bl`: Canto Inferior Esquerdo (Bottom-Left)
+* `abs-br`: Canto Inferior Direito (Bottom-Right)
+
+
+3. **Controle de Dimensões & Ajustes CSS (Tailwind)**:
+* **Largura/Altura**: `w-32` (largura fixada), `h-16` (altura fixada), `w-full` (100% da largura).
+* **Ajuste de Aspect Ratio**: `object-cover` (corta para preencher o container sem distorcer) ou `object-contain` (mantém proporção original sem cortar).
+* **Centralização**: `mx-auto` (para elementos em bloco) ou `flex justify-center items-center` no elemento pai.
+
+
+---
+
+# Slide Title
+
+Here is an embedded video:
+
+<Youtube id="nleqgO38pPU" />
+
+---
+
+# Customizing Video Appearance & Behavior
+
+You can control dimensions, aspect ratio, or start time using props:
+
+<Youtube 
+  id="nleqgO38pPU" 
+  width="600" 
+  height="340"
+  start="0"
+/>
+
+---
+
+# Customizing Video Appearance & Behavior
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nleqgO38pPU?si=KAOBOD0bYy7A_e32" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
