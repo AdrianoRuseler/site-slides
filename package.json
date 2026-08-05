@@ -1,0 +1,19 @@
+{
+  "name": "iiot-slides",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "slidev decks/slide01/slides.md --open",
+    "build": "node build.mjs",
+    "deploy:pages": "node build.mjs && touch dist/.nojekyll && gh-pages -d dist -t true"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

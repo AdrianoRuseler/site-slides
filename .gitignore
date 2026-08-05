@@ -1,0 +1,7 @@
+node_modules/
+dist/
+decks/*/dist/
+*.local
+.DS_Store
+.remote-assets/
+components.d.ts
