@@ -31,7 +31,7 @@ for (const deck of decks) {
   // domcontentloaded (em vez de networkidle) evita timeouts com dev server / HMR /
   // componentes pesados. O --wait dá tempo do conteúdo e animações finalizarem.
   execSync(
-    `npx slidev export ${entry} --output ${output} --format pdf --timeout 90000 --wait-until domcontentloaded --wait 1000`,
+    `npx slidev export ${entry} --output ${output} --format pdf --timeout 90000 --wait-until domcontentloaded --wait 5000`,
     { stdio: 'inherit' },
   )
 }
