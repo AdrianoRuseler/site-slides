@@ -1,0 +1,46 @@
+name: Release PDFs
+
+on:
+  # Dispara ao empurrar uma tag de versão, ex.: git tag v1.0.0 && git push --tags
+  push:
+    tags: ['v*']
+  # Permite rodar manualmente informando uma tag
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag da release (ex.: v1.0.0)'
+        required: true
+        default: 'v0.0.0'
+
+permissions:
+  contents: write # necessário para criar releases e anexar assets
+
+jobs:
+  export-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
+
+      - name: Install dependencies
+        run: nci
+
+      - name: Install Chromium (Playwright)
+        run: npx playwright install --with-deps chromium
+
+      - name: Export decks to PDF
+        run: node export-pdf.mjs
+
+      - name: Create Release with PDFs
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
+          name: Slides ${{ inputs.tag || github.ref_name }}
+          generate_release_notes: true
+          files: pdf/*.pdf

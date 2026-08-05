@@ -3,8 +3,8 @@ import { readdirSync, rmSync, writeFileSync, existsSync, statSync } from 'node:f
 import { join, resolve } from 'node:path'
 
 // Nome do repositório = primeiro segmento do caminho no GitHub Pages.
-// Em CI usamos a variável do GitHub; localmente caímos no padrão 'iiot-slides'.
-const REPO = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'iiot-slides'
+// Em CI usamos a variável do GitHub; localmente caímos no padrão 'site-slides'.
+const REPO = process.env.GITHUB_REPOSITORY?.split('/')[1] || 'site-slides'
 const DECKS_DIR = 'decks'
 const OUT_DIR = 'dist'
 
@@ -44,7 +44,7 @@ const landing = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>IIoT Slides</title>
+  <title>Demo Slides</title>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 640px; margin: 4rem auto; padding: 0 1rem; }
     h1 { margin-bottom: 0.25rem; }
@@ -55,7 +55,7 @@ const landing = `<!doctype html>
   </style>
 </head>
 <body>
-  <h1>IIoT Slides</h1>
+  <h1>Demo Slides</h1>
   <p>Selecione uma apresentação:</p>
   <ul>
 ${links}
