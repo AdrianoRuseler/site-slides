@@ -26,7 +26,7 @@ Desenvolvendo Código Limpo e Eficiente em TypeScript
 </div>
 
 <div class="abs-br m-6 flex gap-2 font-mono text-sm opacity-75">
-  <span>Prof. Seu Nome</span> | <span>Módulo 1</span>
+  <span>Prof. Adriano Ruseler</span> | <span>Aula 00</span>
 </div>
 
 <!--
@@ -413,9 +413,9 @@ Você pode posicionar imagens/ícones em qualquer canto do slide usando utilitá
 ---
 layout: two-cols
 layoutClass: gap-8 items-center
---- 
+---
 
-
+::left::
 # 3. Alinhamento Lado a Lado (Grids)
 
 Posicionando imagens lado a lado com texto em colunas.

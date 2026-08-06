@@ -32,7 +32,26 @@ O `build.mjs` detecta automaticamente qualquer `decks/*/slides.md` — não prec
 
 ```bash
 pnpm install
+```
+
+```bash
+pnpm slidev decks/template/slides.md --open
+```
+
+```bash
 pnpm slidev decks/demo/slides.md --open   # edita um deck específico
+```
+
+```bash
+pnpm slidev decks/utfpr/slides.md --open
+```
+
+```bash
+pnpm slidev decks/layouts/slides.md --open
+```
+
+```bash
+pnpm slidev decks/unocss/slides.md --open
 ```
 
 ## 🏗️ Build de tudo
